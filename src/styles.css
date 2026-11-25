@@ -3,6 +3,9 @@
   --muted: #7a6f66;
   --paper: #fbf8f4;
   --line: #e7ded4;
+  --olive: #7d8c3c;
+  /* Light olive wash laid over the whole page. */
+  --olive-tint: rgba(168, 180, 116, 0.22);
 }
 
 * {
@@ -15,6 +18,41 @@ body {
   color: var(--ink);
   font-family: Georgia, 'Times New Roman', serif;
   line-height: 1.5;
+}
+
+/* Stationary olive branch backdrop.
+   The source JPG has a white background, so `multiply` blends the white away
+   and lets the ivory --paper colour show through. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url('/bg/olive-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Portrait screens: fit the whole landscape artwork so both branches stay visible. */
+@media (max-width: 700px) {
+  body::before {
+    background-size: contain;
+    opacity: 0.4;
+  }
+}
+
+/* Semi-transparent olive wash on top of the artwork, behind all content. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--olive-tint);
+  pointer-events: none;
 }
 
 .page {
@@ -50,7 +88,7 @@ body {
 }
 
 .amp {
-  color: var(--muted);
+  color: var(--olive);
   font-style: italic;
 }
 
@@ -85,7 +123,7 @@ body {
 }
 
 .link:hover {
-  border-color: var(--ink);
+  border-color: var(--olive);
 }
 
 /* Countdown */
