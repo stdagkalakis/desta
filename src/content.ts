@@ -18,5 +18,5 @@ export const wedding = {
   mapLink: "https://maps.app.goo.gl/3S8Qir1JBzTu4hge9",
 
   // Link to a shared Google Drive folder for photos.
-  photosUrl: "https://drive.google.com",
+  photosUrl: "https://forms.gle/2sx4CMFDZnGQjope8",
 };
