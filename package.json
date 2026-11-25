@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "assets": "cp public/bg/olive-bg.jpg design/olive-bg.jpg && rsvg-convert -w 1200 -h 630 design/og.svg -o public/og.png && rsvg-convert -w 180 -h 180 public/favicon.svg -o public/apple-touch-icon.png"
   },
   "dependencies": {
     "react": "^18.3.1",

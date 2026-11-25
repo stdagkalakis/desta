@@ -29,3 +29,6 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Working copy used only to generate design/og.png (source lives in public/bg)
+design/olive-bg.jpg

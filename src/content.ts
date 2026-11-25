@@ -8,6 +8,8 @@ export const wedding = {
   // Human-readable versions shown on the page.
   dateLabel: "Friday, 3 September 2027",
   timeLabel: "18:30",
+  // How long the celebration lasts, used for the calendar event end time.
+  durationHours: 6,
 
   venue: "Kourites",
   city: "Heraklion, Crete",

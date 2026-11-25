@@ -1,0 +1,24 @@
+<!-- Source for public/og.png. Regenerate with:
+     rsvg-convert -w 1200 -h 630 design/og.svg -o public/og.png -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fbf8f4"/>
+  <image xlink:href="olive-bg.jpg" x="0" y="0" width="1200" height="630"
+         preserveAspectRatio="xMidYMid slice" opacity="0.45"/>
+  <rect width="1200" height="630" fill="#a8b474" opacity="0.18"/>
+
+  <g text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" fill="#2f2a26">
+    <text x="600" y="232" font-size="26" letter-spacing="9" fill="#7a6f66">
+      WE'RE GETTING MARRIED
+    </text>
+    <text x="600" y="340" font-size="92">
+      Despina <tspan fill="#7d8c3c" font-style="italic">&amp;</tspan> Stavros
+    </text>
+    <text x="600" y="412" font-size="34" letter-spacing="2" fill="#2f2a26">
+      Friday, 3 September 2027
+    </text>
+    <text x="600" y="462" font-size="27" fill="#7a6f66">
+      Kourites · Heraklion, Crete
+    </text>
+  </g>
+</svg>

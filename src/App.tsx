@@ -1,4 +1,6 @@
+import AddToCalendar from './AddToCalendar'
 import Countdown from './Countdown'
+import Reveal from './Reveal'
 import { wedding } from './content'
 
 export default function App() {
@@ -21,14 +23,15 @@ export default function App() {
       </section>
 
       <section className="screen" id="countdown">
-        <div className="inner">
+        <Reveal>
           <h2>Counting down</h2>
           <Countdown target={wedding.dateTime} />
-        </div>
+          <AddToCalendar />
+        </Reveal>
       </section>
 
       <section className="screen" id="where">
-        <div className="inner">
+        <Reveal>
           <h2>Where</h2>
           <p className="muted">
             {wedding.venue}
@@ -46,18 +49,18 @@ export default function App() {
           <a className="link" href={wedding.mapLink} target="_blank" rel="noreferrer">
             Open in Google Maps
           </a>
-        </div>
+        </Reveal>
       </section>
 
       <section className="screen" id="photos">
-        <div className="inner">
+        <Reveal>
           <h2>Photos</h2>
           <p className="muted">Share your photos from the day with us.</p>
           <a className="link" href={wedding.photosUrl} target="_blank" rel="noreferrer">
             Upload your photos
           </a>
           <p className="note">A Google account is needed to upload.</p>
-        </div>
+        </Reveal>
         <footer className="footer">
           {wedding.bride} &amp; {wedding.groom} · {wedding.dateLabel}
         </footer>
