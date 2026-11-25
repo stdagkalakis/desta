@@ -17,6 +17,7 @@ export const wedding = {
   // Plain link, opened in a new tab.
   mapLink: "https://maps.app.goo.gl/3S8Qir1JBzTu4hge9",
 
-  // Link to a shared Google Drive folder for photos.
+  // Google Form with a file-upload question, used to collect guest photos.
+  // Responses land in the "... - File responses" folder in Drive.
   photosUrl: "https://forms.gle/2sx4CMFDZnGQjope8",
 };

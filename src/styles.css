@@ -12,6 +12,19 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+}
+
 body {
   margin: 0;
   background: var(--paper);
@@ -55,11 +68,22 @@ body::after {
   pointer-events: none;
 }
 
-.page {
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 4rem;
+/* One full-viewport "page" per section. */
+.screen {
+  position: relative;
+  min-height: 100svh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.inner {
+  width: 100%;
+  max-width: 42rem;
 }
 
 .muted {
@@ -68,8 +92,21 @@ body::after {
 }
 
 /* Hero */
-.hero {
-  padding: 2rem 0 3rem;
+.hero .kicker {
+  margin-top: 0;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.scroll-hint:hover {
+  color: var(--olive);
 }
 
 .kicker {
@@ -98,14 +135,9 @@ body::after {
   letter-spacing: 0.08em;
 }
 
-/* Sections */
-.section {
-  padding: 2.5rem 0;
-  border-top: 1px solid var(--line);
-}
-
-.section h2 {
-  margin: 0 0 1rem;
+/* Section headings */
+.screen h2 {
+  margin: 0 0 1.5rem;
   font-weight: 400;
   font-size: 1rem;
   text-transform: uppercase;
@@ -120,10 +152,18 @@ body::after {
   text-decoration: none;
   border-bottom: 1px solid var(--muted);
   padding-bottom: 2px;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.link:hover {
+.link:hover,
+.link:active {
   border-color: var(--olive);
+}
+
+.note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 /* Countdown */
@@ -155,9 +195,11 @@ body::after {
 
 /* Map */
 .map {
-  margin-top: 1.25rem;
+  width: min(100%, 36rem);
+  margin: 1.25rem auto 0;
   border: 1px solid var(--line);
   aspect-ratio: 4 / 3;
+  max-height: 45svh;
 }
 
 .map iframe {
@@ -169,7 +211,92 @@ body::after {
 
 /* Footer */
 .footer {
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.875rem;
+  position: absolute;
+  bottom: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- Phones (portrait) ---------- */
+@media (max-width: 480px) {
+  .screen {
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  .kicker {
+    letter-spacing: 0.22em;
+  }
+
+  .date {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .screen h2 {
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+  }
+
+  /* Two rows of two instead of a cramped single row. */
+  .countdown {
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    max-width: 16rem;
+    margin: 0 auto;
+  }
+
+  .countdown li {
+    flex: 0 0 calc(50% - 0.75rem);
+    min-width: 0;
+  }
+
+  /* Taller frame uses the portrait viewport better. */
+  .map {
+    aspect-ratio: 1 / 1;
+    max-height: 42svh;
+  }
+
+  /* Bigger tap target. */
+  .link {
+    padding: 0.35rem 0.25rem;
+  }
+
+  .scroll-hint {
+    bottom: 1.25rem;
+  }
+
+  .footer {
+    bottom: 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* ---------- Short / landscape phones ---------- */
+@media (max-height: 520px) and (orientation: landscape) {
+  html {
+    scroll-snap-type: none;
+  }
+
+  .screen {
+    min-height: auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .map {
+    max-height: 60svh;
+  }
+
+  .scroll-hint,
+  .footer {
+    position: static;
+    margin-top: 1.5rem;
+  }
+}
+
+/* Touch devices: no hover states, keep the scroll hint subtle. */
+@media (hover: none) {
+  .scroll-hint:hover {
+    color: var(--muted);
+  }
 }
