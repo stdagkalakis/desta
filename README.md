@@ -11,7 +11,7 @@ A tiny static wedding invitation site: **React + TypeScript + Vite**, hosted on 
 
 ```bash
 npm install     # install dependencies (once)
-npm run dev     # start dev server on http://localhost:5173/desta/
+npm run dev     # start dev server on http://localhost:5173/
 ```
 
 ## Other commands
@@ -38,7 +38,8 @@ styling is `src/styles.css`.
 
 ```
 index.html            # page shell
-vite.config.ts        # Vite config (base = '/desta/')
+vite.config.ts        # Vite config (base = '/')
+public/CNAME          # custom domain for GitHub Pages
 src/
   main.tsx            # React entry point
   App.tsx             # the invitation page (all sections)
@@ -52,7 +53,16 @@ src/
 
 1. In GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 2. Push to `main`. The workflow builds and deploys automatically.
-3. Site URL: `https://stdagkalakis.github.io/desta/`
+3. Site URL: `https://desta-wedd.ing`
 
-> If the repo is renamed, update `base` in `vite.config.ts` to `/<new-repo-name>/`.
-> For a custom domain, set `base: '/'` and add a `public/CNAME` file with the domain.
+### Custom domain
+
+- The domain is registered in Cloudflare; DNS points at the GitHub Pages IPs
+  (`185.199.108-111.153` on `@`, CNAME `www` → `stdagkalakis.github.io`), all records
+  set to **DNS only** (no Cloudflare proxy), with SSL/TLS mode **Full (strict)**.
+- `public/CNAME` must contain the domain. It is copied to `dist/` on every build —
+  without it, each deploy clears the custom domain in GitHub Pages settings.
+- `base` in `vite.config.ts` is `'/'` because the site is served from the domain root.
+  If you ever move back to `stdagkalakis.github.io/desta/`, set it to `'/desta/'` and
+  delete `public/CNAME`.
+- `.ing` is an HSTS-preloaded TLD, so HTTPS is mandatory — keep **Enforce HTTPS** on.
